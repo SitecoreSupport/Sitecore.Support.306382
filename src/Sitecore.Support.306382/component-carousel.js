@@ -1047,14 +1047,17 @@ XA.component.carousels = (function ($) {
     };
 
     Carousel.prototype.maxSlideInfoHeight = function () {
-        var maxHeight = this.$slides[0].querySelector('.slide-info').offsetHeight;
-        for (var i = 1; i < this.$slides.length; i++) {
-            var currSlideInfoHeight = this.$slides[i].querySelector('.slide-info').offsetHeight
-            if (maxHeight < currSlideInfoHeight) {
-                maxHeight = currSlideInfoHeight;
+        if (this.$slides[0].querySelector('.slide-info')) {
+            var maxHeight = this.$slides[0].querySelector('.slide-info').offsetHeight;
+            for (var i = 1; i < this.$slides.length; i++) {
+                var currSlideInfoHeight = this.$slides[i].querySelector('.slide-info').offsetHeight
+                if (maxHeight < currSlideInfoHeight) {
+                    maxHeight = currSlideInfoHeight;
+                }
             }
+            return maxHeight;
         }
-        return maxHeight;
+        return null;
     }
 
     Carousel.prototype.resizeWrapper = function () {
